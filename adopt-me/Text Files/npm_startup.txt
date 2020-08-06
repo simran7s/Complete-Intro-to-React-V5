@@ -1,0 +1,63 @@
+1) `npm init` (initialized a json file)
+2)Installing npm dependencies using
+    `npm install -D _______` -D is when you want the dependency to only be installed for your local machine, for you wont need it when exporting for deployment
+
+    'npm i -D prettier' also works
+
+3) Whenever we install a dependency it gets added in the package.json under `"devDependencies":`
+
+4) installing the dependency we jsut got. Example for us is prettier. We need to add to the scripts in package.json
+
+    "format": "prettier \"src/**/*.{js,html}\" --write",
+
+    this will format all js and html files and write(edit the text) them in the same way using prettier
+
+5) Change settings and install prettier through vsCode Extensions. 
+
+    check `Prettier: require config`
+
+    this makes it so that Prettier only runs on files that have prettier installed on it through NPM the way we did it above
+
+
+
+6) Create file in root called ".prettierrc" inside just write `{}` this is have it so when using prettier we will just have the default settings
+
+7) we will install eslint and eslint-config-prettier
+    `npm i -D eslint eslint-config-prettier`
+
+    eslint checks the styling and makes sure we are using proper styles with js the correct js methods etc, (checks for not having unused vars, using old constructs etc)
+
+    eslint-config-prettier says to eslint to not worry about the tabs and spacing and just let prettier handle that stuff
+
+
+8. create a eslintrc.json file in root
+
+        `
+        {
+        "extends": ["eslint: recommended", "prettier", "prettier/react"],
+        "plugins": [],
+        "parserOptions": {
+            "ecmaVersion": 2018,
+            "sourceType": "module",
+            "ecmaFeatures": {
+            "jsx": true
+            }
+        },
+        "env": {
+            "es6": true,
+            "browser": true,
+            "node": true
+        }
+        }
+
+        `
+
+        parserOptions: it tells it to use es6 constructs, modules allows us to use import export, etc etc
+
+9. Add another script in package.json
+
+    `
+    "lint": "eslint \"src/**/.{js,jsx}\" --quiet",
+    `
+
+    ... still cant run because we gotta define React in app.js
