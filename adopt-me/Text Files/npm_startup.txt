@@ -61,3 +61,17 @@
     `
 
     ... still cant run because we gotta define React in app.js
+
+10. install parcel (simlar to webpack)
+    `npm install -D parcel -bundler`
+
+11. add script for parcel
+    `"dev": "parcel src/index.html"`
+
+    parcel just points at index.html then it figures stuff out on itself
+
+
+12. Fix React
+    `$ npm i react react-dom`
+
+    installs both packages

@@ -1,17 +1,8 @@
-/* REACT: This is the basics of react. It is building components that we can put inside of other components and so on. */
+import React from "react";
+//only importing render from react-dom(no longer need ReactDOM.render, now just render) prevents us from importing things that arent going to be used(concept called Tree Shaking. YT it for more info)
+import { render } from "react-dom";
+import Pet from "./Pet";
 
-// Creating another component (or another Stamp)
-
-// All of our info that is passed to Pet will be sent through the param of props. See how we are accessing props.____ to get the info from our call
-
-/* ---> or we can do destructuring and inside of writing props.____ everytime we write replace the param props with {____,____,_____} ____ being the properties. The we can use those properties as vars in our code*/
-const Pet = ({ name, animal, breed }) => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, name),
-    React.createElement("h2", {}, animal),
-    React.createElement("h2", {}, breed),
-  ]);
-};
 // *********************************************
 
 // We have created the App component
@@ -58,4 +49,4 @@ const App = () => {
 // Here we are using out stamp of App and rendering it inside the div with #root.
 /* React.createElement can either take in a stamp(component) that you have created or take in a string of an HTML element can create that("h1" would create an h1) */
 /* NOTE IMPORTANT: when we write .render anything inside the element selected will be removed. Hence they "not rendered" is no longer visible */
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+render(React.createElement(App), document.getElementById("root"));
