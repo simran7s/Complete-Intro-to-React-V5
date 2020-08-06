@@ -70,8 +70,49 @@
 
     parcel just points at index.html then it figures stuff out on itself
 
+    by adding parcel it has babel and jsx built in(allowings html in js)
+
 
 12. Fix React
     `$ npm i react react-dom`
 
     installs both packages
+
+13. Allow eslint to understand React better using
+
+    `$ npm i -D babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react`
+
+    babel-eslint - allows eslint to be augmneted by babel(the transpiler)
+
+    eslint-plugin-import - gives new rules for importing and exporting
+
+    eslint-plugin-jsx-a11y - helps with catching accessability things
+    
+    eslint-plugin-react - helps understand addtional react rules
+
+14. Go to eslintrc.json and add the following
+    `"extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommened",
+    "prettier",
+    "prettier/react"
+  ],`
+
+    *prettier stuff must be at the bottom.
+  
+      "rules": {
+    "react/pro-types": 0,
+    "no-console": 1
+  },
+
+    *This just turns off some rules and makes it so that we can console.log
+
+    "settings": {
+    "react": {
+      "version": "detect"
+    }
+
+    *tells eslint what version of react we are using(detect tells it eslint to figure it out on its own from the package.json file)
+   

@@ -12,10 +12,10 @@ import Pet from "./Pet";
 THis is called variable arity.. (air-ity)
 */
 const App = () => {
-  return React.createElement(
-    "div",
-    {},
-    /*  *************************************************
+  // return React.createElement(
+  //   "div",
+  //   {},
+  /*  *************************************************
             UNDERSTANDING: .createElement
              >PARAM1: What kind of element we want to create
              >PARAM2: What attributes we want it to have (id, class, src, etc)
@@ -23,30 +23,41 @@ const App = () => {
              >PARAM PAST THAT: All addtional patterns are also considered children
              *************************************************
             */
+  // The info we are passing to Pet() is being given as a Param called Props
+  // [
+  //   React.createElement("h1", {}, "Adopt Me"),
+  //   React.createElement(Pet, {
+  //     name: "Luna",
+  //     animal: "Dog",
+  //     breed: "Havanese",
+  //   }),
+  //   React.createElement(Pet, {
+  //     name: "Pepper",
+  //     animal: "Bird",
+  //     breed: "Cockatiel",
+  //   }),
+  //   React.createElement(Pet, {
+  //     name: "Doink",
+  //     animal: "Cat",
+  //     breed: "Mixed",
+  //   }),
+  // ]
+  // );
 
-    // The info we are passing to Pet() is being given as a Param called Props
-    [
-      React.createElement("h1", {}, "Adopt Me"),
-      React.createElement(Pet, {
-        name: "Luna",
-        animal: "Dog",
-        breed: "Havanese",
-      }),
-      React.createElement(Pet, {
-        name: "Pepper",
-        animal: "Bird",
-        breed: "Cockatiel",
-      }),
-      React.createElement(Pet, {
-        name: "Doink",
-        animal: "Cat",
-        breed: "Mixed",
-      }),
-    ]
+  return (
+    <div>
+      <h1 id="something-important">Adopt Me!</h1>
+      {/* How to use other components */}
+      <Pet name="Luna" animal="Dog" breed="Havanese" />
+      <Pet name="Pepper" animal="Bird" breed="Cockatiel" />
+      <Pet name="Doink" animal="Cat" breed="Mixed" />
+    </div>
   );
 };
 
 // Here we are using out stamp of App and rendering it inside the div with #root.
 /* React.createElement can either take in a stamp(component) that you have created or take in a string of an HTML element can create that("h1" would create an h1) */
 /* NOTE IMPORTANT: when we write .render anything inside the element selected will be removed. Hence they "not rendered" is no longer visible */
-render(React.createElement(App), document.getElementById("root"));
+
+// React.createElement(App) == <App/>
+render(<App />, document.getElementById("root"));
