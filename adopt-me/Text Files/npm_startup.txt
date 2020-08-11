@@ -116,3 +116,19 @@
 
     *tells eslint what version of react we are using(detect tells it eslint to figure it out on its own from the package.json file)
    
+15. Eslint hook compatability(adds the hook rules)
+    $ npm i -D eslint-plugin-react-hooks
+
+    add these to eslint file
+
+    "rules": {
+    "react/pro-types": 0,
+    "no-console": 1,
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 1
+  },
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
+
+  NOTE: 0 = ignore
+        1 = warn
+        2 = throw error
