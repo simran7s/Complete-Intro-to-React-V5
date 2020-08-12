@@ -10,7 +10,11 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-eslint": "^10.1.0",
     "eslint": "^5.12.1",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.15.0",
@@ -29,7 +33,6 @@
   "author": "Brian Holt <btholt+complete-intro-to-react@gmail.com>",
   "license": "Apache-2.0",
   "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions"
+    "last 2 Chrome versions"
   ]
 }
