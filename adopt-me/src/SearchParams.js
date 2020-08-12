@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
+import Results from "./Results";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
-  // UseEffect is async so it renders everything for user to see then runs sortly after
-  // This effect will be rerun everytime that [animal, setBreeds, setBreed] is changed
-  // useEffect(fxn, dependencies)
-  // dependencies = things that changes we need to rerun this useEffect(if empty only runs in the begining on render then never again)
+  // Default state is empty
+  const [pets, setPets] = useState([]);
+
+  async function requestPets() {
+    const { animals } = await pet.animals({
+      location,
+      breed,
+      type: animal
+    });
+
+    // If we get something back fom requestPets, setPets animal, otherwise just make it empty
+    setPets(animals || []);
+  }
+
   useEffect(() => {
-    // Sets the Breeds dropdown to be empty
     setBreeds([]);
-    // Sets the default showing breed to be empty(so when changing animal, an old breed wont be shown)... lol lies
     setBreed("");
 
     pet.breeds(animal).then(({ breeds: apiBreeds }) => {
@@ -25,7 +34,12 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={e => {
+          requestPets();
+          e.preventDefault();
+        }}
+      >
         <label htmlFor="location">
           Location
           <input
@@ -39,6 +53,7 @@ const SearchParams = () => {
         <BreedDropdown />
         <button>Submit</button>
       </form>
+      <Results pets={pets} />
     </div>
   );
 };
