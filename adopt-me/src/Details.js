@@ -2,6 +2,7 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
 
 class Details extends React.Component {
   constructor() {
@@ -47,5 +48,12 @@ class Details extends React.Component {
     );
   }
 }
-
-export default Details;
+// We have to make this a function because ErrorBoundaries cannot catch errors in the current class. So we move outside of the class and create a function wrapping the class we were just in to catch all errors.
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      {/* This spread props across details parameters. (It does id = props.id ... etc for us) */}
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}
